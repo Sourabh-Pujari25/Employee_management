@@ -56,6 +56,7 @@ def projects():
             if project_selected:
                 st.session_state.project_name= folder_name
                 st.switch_page("pages/dashboard.py")
+                st.rerun()
                 
 
     st.write(st.session_state.project_name)
