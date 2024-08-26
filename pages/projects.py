@@ -42,11 +42,6 @@ def projects():
         else:
             st.error("Please enter a Project Name")
 
-
-
-
-   
-
     for i, folder_name in enumerate(folder_names):
         column_index = i % num_cols
         column = cols[column_index]

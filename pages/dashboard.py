@@ -23,14 +23,18 @@ def dashboard():
     st.sidebar.image(image,use_column_width=True)
     st.sidebar.markdown("   ")
 
-    dashboard_select=st.sidebar.selectbox("Select an option",options=["Overview","Add New Work","Labour Attendance"])
+    dashboard_select=st.sidebar.selectbox("Select an option",options=["Overview","Add New Work","Labour Attendance","Add Drawing","Stock List"])
     # dashboard_overview=st.sidebar.selectbox("Overview",use_container_width=True)
     if dashboard_select =="Overview" :
         overview()
-    if dashboard_select=="Add New Work":
+    elif dashboard_select=="Add New Work":
         add_new_work()
-    if dashboard_select=="Labour Attendance":
+    elif dashboard_select=="Labour Attendance":
         st.switch_page("pages/labour_attendance.py")
+    elif dashboard_select=="Add Drawing":
+        st.switch_page("pages/add_drawing.py")
+    elif dashboard_select=="Stock List":
+        st.switch_page("pages/stock_list.py")
 
 def overview():
     st.title("Overview")

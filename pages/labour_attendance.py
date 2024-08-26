@@ -13,27 +13,29 @@ def lab_attendance():
     st.sidebar.image(image,use_column_width=True)
     st.sidebar.markdown("   ")
 
-    dashboard_select=st.sidebar.selectbox("Select an option",options=["Labour Attendance","Overview","Add New Work"])
+    dashboard_select=st.sidebar.selectbox("Select an option",options=["Labour Attendance","Overview","Add New Work","Add Drawing","Stock List"])
     # dashboard_overview=st.sidebar.selectbox("Overview",use_container_width=True)
     if dashboard_select =="Overview" :
        st.switch_page("pages/dashboard.py")
-    if dashboard_select=="Add New Work":
+    elif dashboard_select=="Add New Work":
         st.switch_page("pages/dashboard.py")
-    if dashboard_select=="Labour Attendance":
+    elif dashboard_select=="Labour Attendance":
         main_attend()
+    elif dashboard_select=="Add Drawing":
+        st.switch_page("pages/add_drawing.py")
+    elif dashboard_select=="Stock List":
+        st.switch_page("pages/stock_list.py")
         
 
 def main_attend():
-    st.title("Labour Attendance")
+    
     data = {
     "Name": ["John Doe", "Jane Smith", "Alice Johnson", "Bob Brown"],
     "Role": ["Electrician", "Plumber", "Carpenter", "Painter"],
     "Hours Worked": [8, 7.5, 8, 6]
     }
-    col_1,col_2=st.columns([20,80])
-
-    with col_2:
-
+    with st.container(border=True):
+        st.title("Labour Attendance")
     # Create a DataFrame
         df = pd.DataFrame(data)
 
@@ -54,26 +56,28 @@ def main_attend():
     # Title of the page
     contractors = ["Contractor A", "Contractor B", "Contractor C", "Contractor D"]
 
-    # Title of the page
-    st.title("Contractor Labour Management")
 
-    # Dropdown for selecting contractor
-    contractor_name = st.selectbox("Select Contractor", contractors)
+    with st.container(border=True):
+        # Title of the page
+        st.title("Contractor Labour Management")
 
-    # Numeric input for the number of laborers
-    num_labours = st.number_input("Enter number of labours under contractor", min_value=0, step=1)
+        # Dropdown for selecting contractor
+        contractor_name = st.selectbox("Select Contractor", contractors)
 
-    # Button to record the details
-    if st.button("Record Details"):
-        if contractor_name and num_labours >= 0:
-            st.success(f"Recorded: {contractor_name} has {num_labours} labour(s).")
-        else:
-            st.error("Please select a contractor and enter a valid number of labours.")
+        # Numeric input for the number of laborers
+        num_labours = st.number_input("Enter number of labours under contractor", min_value=0, step=1)
 
-    # Display the recorded details
-    if st.button("Show Recorded Details"):
-        st.write(f"Contractor: {contractor_name}")
-        st.write(f"Number of Labours: {num_labours}")
+        # Button to record the details
+        if st.button("Record Details"):
+            if contractor_name and num_labours >= 0:
+                st.success(f"Recorded: {contractor_name} has {num_labours} labour(s).")
+            else:
+                st.error("Please select a contractor and enter a valid number of labours.")
+
+        # Display the recorded details
+        if st.button("Show Recorded Details"):
+            st.write(f"Contractor: {contractor_name}")
+            st.write(f"Number of Labours: {num_labours}")
 
 
 
