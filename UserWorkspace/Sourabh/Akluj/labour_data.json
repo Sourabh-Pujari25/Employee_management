@@ -1,0 +1,26 @@
+[
+    {
+        "Employee ID": "LB-001",
+        "Name": "Damu",
+        "Job Role": "Plumber",
+        "Date of Joining": "2024-09-14",
+        "Contact Number": "9876543210",
+        "Email Address": "Damu@vardaman.com"
+    },
+    {
+        "Employee ID": "LB-002",
+        "Name": "Shamu",
+        "Job Role": "Painter",
+        "Date of Joining": "2024-09-14",
+        "Contact Number": "9876543210",
+        "Email Address": "Damu@vardaman.com"
+    },
+    {
+        "Employee ID": "LB-003",
+        "Name": "Mamu",
+        "Job Role": "Helper",
+        "Date of Joining": "2024-09-14",
+        "Contact Number": "9876543210",
+        "Email Address": "Damu@vardaman.com"
+    }
+]

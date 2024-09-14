@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 from streamlit_option_menu import option_menu
+from pages.labour_attendance import lab_attendance
+from app_utils import *
+from files.add_Labour import *
 
 st.set_page_config(page_title='Oliots ERP', page_icon='images/logo.ico',layout="wide")
 
@@ -32,6 +35,9 @@ def dashboard():
     image = 'images/logo.png'
     st.sidebar.image(image,use_column_width=True)
     st.sidebar.markdown("   ")
+    select_project = st.sidebar.button("Select a Project",use_container_width=True)
+    if select_project:
+        st.switch_page("pages/projects.py")
 
     st.sidebar.markdown(
                 """
@@ -41,36 +47,40 @@ def dashboard():
                 """,
                 unsafe_allow_html=True
             )
-
-    dashboard_select=st.sidebar.selectbox("Select an option",options=["Overview","Add New Work","Labour Attendance","Add Drawing","Stock List"],label_visibility="collapsed")
+    
+    dashboard_select=st.sidebar.selectbox("Select an option",options=["Dashboard","Add New Work","Labour Attendance","Add Drawing","Stock List"],label_visibility="collapsed")#"Overview",
     # dashboard_overview=st.sidebar.selectbox("Overview",use_container_width=True)
-    if dashboard_select =="Overview" :
+    if dashboard_select =="Dashboard" :
         overview()
     elif dashboard_select=="Add New Work":
         add_new_work()
     elif dashboard_select=="Labour Attendance":
-        st.switch_page("pages/labour_attendance.py")
+        try:
+            lab_attendance()
+        except FileNotFoundError:
+            st.error("Please add Labour to the Project")
+
+        # st.switch_page("pages/labour_attendance.py")
     elif dashboard_select=="Add Drawing":
         st.switch_page("pages/add_drawing.py")
     elif dashboard_select=="Stock List":
         st.switch_page("pages/stock_list.py")
 
 def overview():
-    st.title("Overview")
-    with st.expander("All Work Details"):
-        df_work=all_works()
-        work_df=st.data_editor(df_work,use_container_width=True)
 
+    option_menu(menu_title=None,options=["Dashboard"],icons=["bi bi-window-fullscreen"],styles={"container": {"padding": "0!important", "background-color": "#fafafa","border":" 2px inset rgba(0,204,241,0.55)"},
+            "icon": {"color": "black", "font-size": "25px"},
+            "nav-link": {"font-size": "25px","font-weight":"normal","color":"black", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+            "nav-link-selected": {"background-color": "white"},})
+    with st.expander("All Work Details",expanded=True):
+        col1,col2=st.columns([1,1])
+        with col1:
+                add_new_material()
+        with col2:
 
-
-    col1,col2=st.columns([1,1])
-    with col1:
-        with st.expander("Add New Material"):
-            add_new_material()
-    with col2:
-        with st.expander("Add New Worker"):
-            add_new_worker()
-    demo_graph()
+                add_new_worker()
+               
+    
 
 def add_new_work():
     
@@ -128,13 +138,9 @@ def add_new_work():
             "nav-link": {"font-size": "25px","font-weight":"normal","color":"black", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
             "nav-link-selected": {"background-color": "white"},})
     with st.container(border=True):
-
         with open(f"{st.session_state.work_data_save_path}/work_data.json","r") as f:
             json_data=f.read()
-
-
         data = json.loads(json_data)
-
         df = pd.json_normalize(data)
         st.data_editor(df,hide_index=True)
                         
@@ -299,7 +305,10 @@ def add_new_material():
         material_description = st.text_area("Material Description")
 
         # Submit button
-        submit_button = st.form_submit_button(label="Add Material")
+
+        col_1,col_2,col_3=st.columns([1,2,1])
+        with col_2:
+            submit_button = st.form_submit_button(label="Add Material",use_container_width=True,type="primary")
 
         # Handling form submission
         if submit_button:
@@ -309,124 +318,23 @@ def add_new_material():
             st.write(f"Material Description: {material_description}")
 
 
-def add_new_worker():
-    with st.form(key='add_employee_form'):
-        # Employee Name
-        employee_name = st.text_input("Employee Name")
-        
-        # Employee ID
-        employee_id = st.text_input("Employee ID")
-        
-        # Position
-        position = st.text_input("Position")
-        
-        # Department
-        department = st.selectbox("Select Department", ("HR", "Finance", "Development", "Sales", "Marketing"))
-        
-        # Date of Joining
-        joining_date = st.date_input("Date of Joining")
-        
-        # Contact Number
-        contact_number = st.text_input("Contact Number")
-        
-        # Email Address
-        email_address = st.text_input("Email Address")
-        
-        # Submit button
-        submit_button = st.form_submit_button(label="Add Employee")
-        
-        # Handling form submission
-        if submit_button:
-            st.write("New employee added successfully!")
-            st.write(f"Employee Name: {employee_name}")
-            st.write(f"Employee ID: {employee_id}")
-            st.write(f"Position: {position}")
-            st.write(f"Department: {department}")
-            st.write(f"Date of Joining: {joining_date}")
-            st.write(f"Contact Number: {contact_number}")
-            st.write(f"Email Address: {email_address}")
 
-def all_works():
-    work_details = [
-        {"Work Name": "Construction of Building A", "Date": "2024-07-30"},
-        {"Work Name": "Road Repair Project", "Date": "2024-07-29"},
-        {"Work Name": "Bridge Maintenance", "Date": "2024-07-28"},
-        {"Work Name": "Park Landscaping", "Date": "2024-07-27"},
-        {"Work Name": "Office Renovation", "Date": "2024-07-26"},
-        {"Work Name": "School Expansion", "Date": "2024-07-25"}
-    ]
-    df_work = pd.DataFrame(work_details)
 
-    return df_work
+    
+# Function to load existing data from the JSON file
+def load_data(json_file_path):
+    if os.path.exists(json_file_path):
+        with open(json_file_path, 'r') as file:
+            return json.load(file)
+    else:
+        return []
 
-def demo_graph():
-
-    work_details = [
-        {"Work Name": "Construction of Building A", "Date": "2024-07-30"},
-        {"Work Name": "Road Repair Project", "Date": "2024-07-29"},
-        {"Work Name": "Bridge Maintenance", "Date": "2024-07-28"},
-        {"Work Name": "Park Landscaping", "Date": "2024-07-27"},
-        {"Work Name": "Office Renovation", "Date": "2024-07-26"},
-        {"Work Name": "School Expansion", "Date": "2024-07-25"}
-    ]
-
-    labour_details = [
-        {"Labour Name": "John Doe", "Work Name": "Construction of Building A", "Attendance %": 95},
-        {"Labour Name": "Jane Smith", "Work Name": "Road Repair Project", "Attendance %": 88},
-        {"Labour Name": "Alice Johnson", "Work Name": "Bridge Maintenance", "Attendance %": 92},
-        {"Labour Name": "Bob Brown", "Work Name": "Park Landscaping", "Attendance %": 85},
-        {"Labour Name": "Charlie Davis", "Work Name": "Office Renovation", "Attendance %": 90},
-        {"Labour Name": "Diana White", "Work Name": "School Expansion", "Attendance %": 87}
-    ]
-
-    # Convert to DataFrames
-    df_work = pd.DataFrame(work_details)
-    df_labour = pd.DataFrame(labour_details)
-
-    # Merge DataFrames on 'Work Name'
-    df_combined = pd.merge(df_labour, df_work, on="Work Name")
-
-    # Streamlit App
-    st.write("Labour Data Visualizations")
-
-    # Plotting
-    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-
-    # Histogram
-    sns.histplot(df_combined["Attendance %"], kde=True, bins=10, color="skyblue", ax=axes[0, 0])
-    axes[0, 0].axvline(df_combined["Attendance %"].mean(), color="black", linestyle="--", linewidth=2, label=f"Mean: {df_combined['Attendance %'].mean():.1f}")
-    axes[0, 0].set_title("Histogram of Labour Attendance Percentages")
-    axes[0, 0].set_xlabel("Attendance Percentage")
-    axes[0, 0].set_ylabel("Frequency")
-    axes[0, 0].legend()
-    axes[0, 0].grid(True)
-
-    # Bar Chart
-    sns.barplot(x="Work Name", y="Attendance %", data=df_combined, palette="viridis", ax=axes[0, 1])
-    axes[0, 1].set_title("Bar Chart of Labour Attendance Percentages by Work")
-    axes[0, 1].set_xlabel("Work Name")
-    axes[0, 1].set_ylabel("Attendance Percentage")
-    axes[0, 1].tick_params(axis='x', rotation=45)
-    axes[0, 1].grid(True)
-
-    # Scatter Plot
-    sns.scatterplot(x="Date", y="Attendance %", hue="Labour Name", data=df_combined, palette="viridis", ax=axes[1, 0])
-    axes[1, 0].set_title("Scatter Plot of Attendance % by Date")
-    axes[1, 0].set_xlabel("Date")
-    axes[1, 0].set_ylabel("Attendance Percentage")
-    axes[1, 0].tick_params(axis='x', rotation=45)
-    axes[1, 0].grid(True)
-
-    # Box Plot
-    sns.boxplot(x="Work Name", y="Attendance %", data=df_combined, palette="Set2", ax=axes[1, 1])
-    axes[1, 1].set_title("Box Plot of Labour Attendance Percentages by Work")
-    axes[1, 1].set_xlabel("Work Name")
-    axes[1, 1].set_ylabel("Attendance Percentage")
-    axes[1, 1].tick_params(axis='x', rotation=45)
-    axes[1, 1].grid(True)
-
-    plt.tight_layout()
-    st.pyplot(fig)
+# Function to save data to the JSON file
+def save_data(data,json_file_path):
+    with open(json_file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+    
+    
 
 
 

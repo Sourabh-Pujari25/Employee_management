@@ -24,6 +24,8 @@ def load_users():
             return json.load(file)
     return {}
 
+
+
 # Save user data to JSON file
 def save_users(users):
     with open(USER_DATA_PATH, 'w') as file:
