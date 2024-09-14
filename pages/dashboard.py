@@ -11,6 +11,7 @@ from streamlit_option_menu import option_menu
 from pages.labour_attendance import lab_attendance
 from app_utils import *
 from files.add_Labour import *
+from pages.add_drawing import *
 
 st.set_page_config(page_title='Oliots ERP', page_icon='images/logo.ico',layout="wide")
 
@@ -62,7 +63,7 @@ def dashboard():
 
         # st.switch_page("pages/labour_attendance.py")
     elif dashboard_select=="Add Drawing":
-        st.switch_page("pages/add_drawing.py")
+        add_drawinng_fun()
     elif dashboard_select=="Stock List":
         st.switch_page("pages/stock_list.py")
 
