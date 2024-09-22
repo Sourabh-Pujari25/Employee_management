@@ -22,5 +22,13 @@
         "Date of Joining": "2024-09-14",
         "Contact Number": "9876543210",
         "Email Address": "Damu@vardaman.com"
+    },
+    {
+        "Employee ID": "LB-004",
+        "Name": "John",
+        "Job Role": "plumber",
+        "Date of Joining": "2024-09-15",
+        "Contact Number": "123243344",
+        "Email Address": "john@john.com"
     }
 ]

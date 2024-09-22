@@ -2,5 +2,9 @@
     "Sourabh": {
         "password": "Pujari",
         "role": "Superadmin"
+    },
+    "Ayush": {
+        "password": "Ayush",
+        "role": "Admin"
     }
 }
