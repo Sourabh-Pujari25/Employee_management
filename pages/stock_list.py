@@ -79,33 +79,39 @@ def stokk():
     st.title("Stock List")
 
     # Tabs
-    tab1, tab2, tab3 = st.tabs(["Show Available Stock", "Show Used Stock", "Add New Stock"])
+    tab1, tab2, tab3 = st.tabs(["Add New Stock", "Show Used Stock", "Show Available Stock"])
 
     with tab1:
-        st.header("Show Available Stock")
-        with st.form(key='available_stock_form'):
+        st.header("Add New Stock")
+        with st.form(key='new_stock_form'):
             sr_no = st.text_input("Sr.No")
-            stock_date = st.date_input("Date", value=date.today())
+            new_stock_date = st.date_input("Date", value=date.today())
             item_name = st.text_input("Item Name")
             size = st.text_input("Size")
-            godown_name = st.text_input("Godown Name")
-            vendor_name = st.text_input("Vendor Name")
-            submit_available = st.form_submit_button(label='Add to Available Stock')
+            
+            godown_name = st.selectbox("Select Godown Name", options=["Other"] + godowns)
+            if godown_name == "Other":
+                godown_name = st.text_input("Enter Other Godown Name")
+            
+            vendor_name = st.selectbox("Select Vendor Name", options=["Other"] + vendors)
+            if vendor_name == "Other":
+                vendor_name = st.text_input("Enter Other Vendor Name")
+            
+            submit_new_stock = st.form_submit_button(label='Add to New Stock')
         
         if submit_available:
-            new_entry = pd.DataFrame({
-                "Sr.No": [sr_no],
-                "Date": [stock_date],
-                "Item Name": [item_name],
-                "Size": [size],
-                "Godown Name": [godown_name],
-                "Vendor Name": [vendor_name]
-            })
-            st.session_state.available_stock = pd.concat([st.session_state.available_stock, new_entry], ignore_index=True)
-            save_stock_data(st.session_state.available_stock, st.session_state.used_stock)
+            new_entry = {
+                "Sr.No": sr_no,
+                "Date": stock_date,
+                "Item Name": item_name,
+                "Size": size,
+                "Godown Name": godown_name,
+                "Vendor Name": vendor_name
+            }
+            st.session_state.available_stock = st.session_state.available_stock.append(new_entry, ignore_index=True)
         
         st.subheader("Available Stock Data")
-        st.dataframe(st.session_state.available_stock, use_container_width=True, hide_index=True)
+        st.dataframe(st.session_state.available_stock,use_container_width=True,hide_index=True)
 
     with tab2:
         st.header("Show Used Stock (Admin Only)")
@@ -140,37 +146,30 @@ def stokk():
         st.dataframe(st.session_state.used_stock, use_container_width=True, hide_index=True)
 
     with tab3:
-        st.header("Add New Stock")
-        with st.form(key='new_stock_form'):
+        st.header("Show Available Stock")
+        with st.form(key='available_stock_form'):
             sr_no = st.text_input("Sr.No")
-            new_stock_date = st.date_input("Date", value=date.today())
+            stock_date = st.date_input("Date", value=date.today())
             item_name = st.text_input("Item Name")
             size = st.text_input("Size")
-            
-            godown_name = st.selectbox("Select Godown Name", options=["Other"] + godowns)
-            if godown_name == "Other":
-                godown_name = st.text_input("Enter Other Godown Name")
-            
-            vendor_name = st.selectbox("Select Vendor Name", options=["Other"] + vendors)
-            if vendor_name == "Other":
-                vendor_name = st.text_input("Enter Other Vendor Name")
-            
-            submit_new_stock = st.form_submit_button(label='Add to New Stock')
+            godown_name = st.text_input("Godown Name")
+            vendor_name = st.text_input("Vendor Name")
+            submit_available = st.form_submit_button(label='Add to Available Stock')
         
         if submit_new_stock:
-            new_entry = pd.DataFrame({
-                "Sr.No": [sr_no],
-                "Date": [new_stock_date],
-                "Item Name": [item_name],
-                "Size": [size],
-                "Godown Name": [godown_name],
-                "Vendor Name": [vendor_name]
-            })
-            st.session_state.available_stock = pd.concat([st.session_state.available_stock, new_entry], ignore_index=True)
-            save_stock_data(st.session_state.available_stock, st.session_state.used_stock)
+            new_entry = {
+                "Sr.No": sr_no,
+                "Date": new_stock_date,
+                "Item Name": item_name,
+                "Size": size,
+                "Godown Name": godown_name,
+                "Vendor Name": vendor_name
+            }
+            st.session_state.available_stock = st.session_state.available_stock.append(new_entry, ignore_index=True)
         
         st.subheader("New Stock Data")
-        st.dataframe(st.session_state.available_stock, use_container_width=True, hide_index=True)
+        st.dataframe(st.session_state.available_stock,use_container_width=True,hide_index=True)
+
 
 if __name__ == "__main__":
     stock_list_fun()
