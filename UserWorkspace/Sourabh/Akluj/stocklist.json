@@ -1,0 +1,37 @@
+{
+  "available_stock": [
+    {
+      "Sr.No": "wd",
+      "Date": "2024-09-22",
+      "Item Name": "Sourabh",
+      "Size": "damu",
+      "Godown Name": "Sourabh",
+      "Vendor Name": "Pujari"
+    },
+    {
+      "Sr.No": "",
+      "Date": "2024-09-22",
+      "Item Name": "",
+      "Size": "",
+      "Godown Name": "",
+      "Vendor Name": ""
+    },
+    {
+      "Sr.No": "",
+      "Date": "2024-09-22",
+      "Item Name": "",
+      "Size": "",
+      "Godown Name": "",
+      "Vendor Name": ""
+    },
+    {
+      "Sr.No": "",
+      "Date": "2024-09-22",
+      "Item Name": "",
+      "Size": "",
+      "Godown Name": "",
+      "Vendor Name": ""
+    }
+  ],
+  "used_stock": []
+}

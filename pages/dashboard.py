@@ -296,27 +296,21 @@ def add_new_material():
 
     # Streamlit form
     with st.form(key='add_material_form'):
+        material_type = st.selectbox("Select Material Type", ("Vardhaman Material", "MCC Material"))
         # Material Name
         material_name = st.text_input("Material Name")
-
-        # Material Type
-        material_type = st.selectbox("Select Material Type", ("Type 1", "Type 2"))
-
         # Material Description
-        material_description = st.text_area("Material Description")
-
+        material_data = st.date_input("Material Date")
+        material_size = st.text_input("Material Size")
+        godown_name = st.text_input("Godown Name")
+        vendor_name = st.text_input("Vendor Name")
         # Submit button
-
         col_1,col_2,col_3=st.columns([1,2,1])
         with col_2:
             submit_button = st.form_submit_button(label="Add Material",use_container_width=True,type="primary")
-
         # Handling form submission
         if submit_button:
-            st.write("New material added successfully!")
-            st.write(f"Material Name: {material_name}")
-            st.write(f"Material Type: {material_type}")
-            st.write(f"Material Description: {material_description}")
+            pass
 
 
 
