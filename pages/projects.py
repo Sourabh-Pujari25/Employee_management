@@ -12,6 +12,7 @@ from statics.css_ import *
 from app_utils import *
 
 
+
 def projects():
     sidebar_colour()
     hide_pages()

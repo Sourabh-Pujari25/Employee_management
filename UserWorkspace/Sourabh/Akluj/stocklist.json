@@ -1,37 +1,189 @@
-{
-  "available_stock": [
+[
     {
-      "Sr.No": "wd",
-      "Date": "2024-09-22",
-      "Item Name": "Sourabh",
-      "Size": "damu",
-      "Godown Name": "Sourabh",
-      "Vendor Name": "Pujari"
+        "Stock_ID": "Stock_001",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
     },
     {
-      "Sr.No": "",
-      "Date": "2024-09-22",
-      "Item Name": "",
-      "Size": "",
-      "Godown Name": "",
-      "Vendor Name": ""
+        "Stock_ID": "Stock_002",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
     },
     {
-      "Sr.No": "",
-      "Date": "2024-09-22",
-      "Item Name": "",
-      "Size": "",
-      "Godown Name": "",
-      "Vendor Name": ""
+        "Stock_ID": "Stock_003",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
     },
     {
-      "Sr.No": "",
-      "Date": "2024-09-22",
-      "Item Name": "",
-      "Size": "",
-      "Godown Name": "",
-      "Vendor Name": ""
+        "Stock_ID": "Stock_004",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_005",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_006",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_007",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_008",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_009",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_010",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_011",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_012",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_013",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_014",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_015",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_016",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_017",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_018",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_019",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_020",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_021",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Quantity": 0.0,
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_022",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Quantity": 0.0,
+        "Godown Name": "",
+        "Vendor Name": ""
+    },
+    {
+        "Stock_ID": "Stock_023",
+        "Date": "2024-10-01",
+        "Item Name": "",
+        "Size": "",
+        "Quantity": 0.0,
+        "Godown Name": "",
+        "Vendor Name": ""
     }
-  ],
-  "used_stock": []
-}
+]

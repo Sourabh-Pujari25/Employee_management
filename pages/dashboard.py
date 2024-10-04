@@ -12,6 +12,7 @@ from pages.labour_attendance import lab_attendance
 from app_utils import *
 from files.add_Labour import *
 from pages.add_drawing import *
+from pages.stock_list import *
 
 st.set_page_config(page_title='Oliots ERP', page_icon='images/logo.ico',layout="wide")
 
@@ -65,7 +66,7 @@ def dashboard():
     elif dashboard_select=="Add Drawing":
         add_drawinng_fun()
     elif dashboard_select=="Stock List":
-        st.switch_page("pages/stock_list.py")
+        stock_list_fun()
 
 def overview():
 
@@ -312,7 +313,9 @@ def add_new_material():
         if submit_button:
             pass
 
-
+def add_contractor():
+    with st.container(border=True):
+        contractor_name = st.selectbox("Select Material Type", ("Vardhaman Material", "MCC Material"))
 
 
     

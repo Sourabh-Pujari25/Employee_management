@@ -1,0 +1,42 @@
+[
+    {
+        "Stock_ID": "Stock_001",
+        "Date": "2024-10-01",
+        "Item Name": "aa",
+        "Size": "ss",
+        "Godown Name": "dd",
+        "Vendor Name": "ff"
+    },
+    {
+        "Stock_ID": "Stock_002",
+        "Date": "2024-10-01",
+        "Item Name": "aa",
+        "Size": "ss",
+        "Godown Name": "dd",
+        "Vendor Name": "ff"
+    },
+    {
+        "Stock_ID": "Stock_003",
+        "Date": "2024-10-01",
+        "Item Name": "aa",
+        "Size": "ss",
+        "Godown Name": "dd",
+        "Vendor Name": "ff"
+    },
+    {
+        "Stock_ID": "Stock_004",
+        "Date": "2024-10-01",
+        "Item Name": "aa",
+        "Size": "ss",
+        "Godown Name": "dd",
+        "Vendor Name": "ff"
+    },
+    {
+        "Stock_ID": "Stock_005",
+        "Date": "2024-10-01",
+        "Item Name": "ewf",
+        "Size": "ef",
+        "Godown Name": "ef",
+        "Vendor Name": "ef"
+    }
+]
